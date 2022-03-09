@@ -1,0 +1,40 @@
+*,
+*::before,
+*::after { box-sizing:border-box; }
+a { text-decoration:none; color:inherit; cursor:pointer; }
+button { background-color:transparent; color:inherit; border-width:0; padding:0; cursor:pointer; }
+figure{ margin:0; }
+ul, ol, dd { margin:0; padding:0; list-style:none; }
+h1, h2, h3, h4, h5, h6 { margin:0; font-weight:inherit; }
+p { margin:0; }
+cite { font-style:normal; }
+fieldset { border-width:0; padding:0; margin:0; }
+select, input[type=number] { display: inline-block !important }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.highlight{
+  position: relative;
+  display: inline-block;
+  &::before{
+    content: '';
+    position: absolute;
+    left: 0; bottom: -3px;
+    display: block;
+    height: 50%;
+    width: 100%;
+    background-color: mediumaquamarine;
+    opacity: .5;
+    z-index: 0;
+  }
+  &.plum::before{
+    background-color: plum;
+    opacity: .7;
+  }
+  b{
+    position: relative;
+    z-index: 1;
+  }
+}

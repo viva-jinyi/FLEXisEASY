@@ -81,10 +81,15 @@
     <input class="modal-state" id="modal-1" type="checkbox">
     <div class="modal">
       <label class="modal-bg" for="modal-1"></label>
-      <div class="modal-body" style="min-width: 350px;">
+      <div class="modal-body" style="min-width: 450px;">
         <label class="btn-close" for="modal-1">X</label>
         <p class="modal-text">
-          <p v-html="css_1 + css_2" style="line-height: 1.7"></p>
+          <p style="line-height: 1.7">
+            .container{
+              <span v-html="css_1"></span><br>
+            }<br>
+            .box{<span v-html="css_2"></span><br>
+            }
         </p>
         <label class="paper-btn" for="modal-1" @click="copyToClipboard">Copy ❤</label>
       </div>
@@ -127,7 +132,7 @@ export default {
         {
           select: "align-items",
           options: ["stretch", "flex-start", "flex-end", "center", "baseline"],
-          model: "stretch"
+          model: "flex-start"
         },
       ],
       boxCnt: 3,
@@ -175,6 +180,13 @@ export default {
         css = css.replace(/\n/g, "");
         this.$emit("setContainer", css)
       }
+      const regex = / /gi;
+      this.cssCode = `.container{
+          ${this.css_1.replace(/<br>/ig, "").replace(regex, '')}
+        }
+        .box{
+          ${this.css_2.replace(/<br>/ig, "").replace(regex, '')}
+        }`
     },
     onEmitBox() {
       let basisCSS = this.flexBasis === 'custom' ? `flex-basis: ${this.customBasis}%;` : `flex-basis: ${this.flexBasis};`; 
@@ -200,9 +212,15 @@ export default {
     },
     copyToClipboard() {
       let tempElem = document.createElement('textarea');
-      let tempCss = this.css_1+this.css_2;
+      let containerCss = this.css_1;
+      let boxCss = this.css_2;
       const regex = / /gi;
-      tempElem.value = tempCss.replace(/<br>/ig, "").replace(regex, '');  
+      tempElem.value = `.container{
+        ${containerCss.replace(/<br>/ig, "").replace(regex, '')}
+      }
+      .box{
+        ${boxCss.replace(/<br>/ig, "").replace(regex, '')}
+      }`
       document.body.appendChild(tempElem);
 
       tempElem.select();

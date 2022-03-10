@@ -40,11 +40,26 @@ export default {
 .wrapper{
   display: flex;
   gap: 15px;
+  @media only screen and (max-width: 920px) {
+    & {
+      flex-direction: column;
+    }
+  }
 }
 .left{
   width: 65%;
+  @media only screen and (max-width: 920px) {
+    & {
+      width: 100%;
+    }
+  }
 }
 .right{
   width: 35%;
+  @media only screen and (max-width: 920px) {
+    & {
+      width: 100%;
+    }
+  }
 }
 </style>

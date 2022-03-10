@@ -47,7 +47,7 @@ export default {
   }
 }
 .left{
-  width: 65%;
+  width: 70%;
   @media only screen and (max-width: 920px) {
     & {
       width: 100%;
@@ -55,7 +55,7 @@ export default {
   }
 }
 .right{
-  width: 35%;
+  width: 30%;
   @media only screen and (max-width: 920px) {
     & {
       width: 100%;
